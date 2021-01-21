@@ -1,0 +1,32 @@
+{
+  "album": [
+    {
+      "id": 1,
+      "title": "BE - Deluxe ver.",
+      "author": "BTS",
+      "release": "2020-08-21"
+    }
+  ],
+  "tracks" : [
+    { 
+      "id":1,
+      "albumId":1,
+      "track":1, 
+      "name":"Life Goes On",
+      "production":"RM,SUGA,J-Hope"
+    },{
+        "id":2,
+        "albumId":1,
+        "track":2, 
+        "name":"내 방을 여행하는 법 (Fly To My Room)",
+        "production":"RM,SUGA,J-Hope"
+    }
+  ],
+  "playlists":[
+    {
+      "id":"1",
+      "name":"stream BE",
+      "tracks":[{"trackId":1, "albumId":1}]
+    }
+  ]
+}
