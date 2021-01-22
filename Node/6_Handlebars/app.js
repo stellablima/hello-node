@@ -13,7 +13,7 @@ const app = express();
 
 //banco
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('postapp', 'postgres', 'admin', {host: "localhost", dialect: 'postgres'})
+const sequelize = new Sequelize('test', 'postgres', 'admin', {host: "localhost", dialect: 'postgres'})
 sequelize.authenticate().then(function(){console.log("sucesso")}).catch(function(erro){console.log("erro" + erro)});
 
 //bodyparser
@@ -45,7 +45,4 @@ app.post('/add', function(req, res){
 app.listen(8081, function(){console.log("servidor http://localhost:8081");});
 
 //utilitario para receber dados de qualquer formulario -> bodyparser
-
-
-//git clone
-//upar essa pasta
+//https://blog.da2k.com.br/2015/02/04/git-e-github-do-clone-ao-pull-request/
