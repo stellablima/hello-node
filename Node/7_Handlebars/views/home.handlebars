@@ -1,0 +1,15 @@
+<h1>Lista de Posts</h1>
+<table style="1px solid black">
+    {{#each posts}}
+    <tr>
+        <td>{{dataValues.titulo}}</td>
+        <td>{{dataValues.conteudo}}</td>
+        <td><small> {{dataValues.createdAt}}</small></td>
+        <td><a href="/deletar/{{dataValues.id}}"><button>Deletar</button></a></td>
+    </tr>
+    {{/each}}
+</table>
+
+
+    
+    

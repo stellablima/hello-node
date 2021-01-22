@@ -24,10 +24,7 @@ const Usuario = sequelize.define('usuarios',{
 })*/
 //Usuario.sync({force:true});
 /* para testar
-Postagem.create({
-    titulo:"Coelinhos",
-    conteudo:"São fofos e fazem muito cocô"
-});
+
 
 Usuario.create({
     nome:"Stella",
