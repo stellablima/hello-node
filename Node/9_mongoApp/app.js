@@ -6,27 +6,48 @@ const mongoose = require('mongoose');
 const app = express();
 const admin = require('./routes/admin');
 const path =  require('path');
+const session = require('express-session');
+const flash = require("connect-flash");
 
 //configurar módulos
+app.use(session({
+    secret: "chavedasessao",
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(flash());
+app.use((req, res, next)=>{
+    res.locals.success_msg = req.flash("success_msg");//variaveis globais
+    res.locals.error_msg = req.flash("error_msg");
+    next();
+});
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json())
 app.engine('handlebars', handlebars({defaultLayout: 'main'}))
 app.set('view engine', handlebars);
 
+
 //configurar rotas
 app.use('/admin', admin);
+
+app.use((req, res, next)=>{
+    console.log('middleware');
+    next();
+});
 
 //public
 app.use(express.static(path.join(__dirname, "public")));
 
 //banco
 //mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost/blogapp").then(()=>{
-    console.log("mongo on");
-}).catch((erro)=>{
-    console.log("Erro: "+erro);
-});
-
+mongoose.connect("mongodb://localhost/blogapp", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }).then(()=>{
+      console.log("Mongo conectado");
+  }).catch((erro)=>{
+      console.log("Erro: " + erro);
+  });
 
 
 
@@ -54,6 +75,8 @@ npm install express --save;
 npm install express-handlebars --save;
 npm install body-parser --save;
 npm install mongoose --save;
+npm install express-session --save;
+npm install connect-flash --save;
 */
 
 /*
@@ -85,4 +108,10 @@ sinal de maior sinaliza partials
 
 slug, é a url do objeto
 
+cookie arquivo txt com id x sessão puxa o id e joga os dados no navegador
+middleware, uma entidade que pode manipular os dados das requisições http
+
+app.use configura e instancia middlewares
+
+flash tipo de sessão que aparece enquanto a pag ta on, usamos para mensagens globais
 */
