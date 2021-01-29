@@ -15,6 +15,7 @@ require("./models/Categoria");
 const Categoria = mongoose.model('categorias');
 const passport = require("passport");
 require('./config/auth')(passport);
+const db = require("./config/db");
 
 //configurar módulos
 app.use(session({
@@ -30,7 +31,7 @@ app.use((req, res, next)=>{ //middleware para configurar variaveis globais
     res.locals.error_msg = req.flash("error_msg");
     res.locals.error = req.flash("error");
     res.locals.user = req.user || null; //user armazena dados so usuario autenticado, req.user criado pelo passport armazena dados do usuario logado
-    //res.locals.user ? (res.locals.user).toJSON : null
+    //res.locals.user ? (res.locals.user).toJSON() : null
     next();
 });
 app.use(bodyParser.urlencoded({extended: true}));
@@ -110,7 +111,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 //banco
 //mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost/blogapp", {
+mongoose.connect(db.mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
@@ -120,7 +121,7 @@ mongoose.connect("mongodb://localhost/blogapp", {
       console.log("Erro: " + erro);
   });
 
-const PORT = 8081;
+const PORT = process.env.PORT || 8081;
 app.listen(PORT, ()=>{
     console.log("on");
 });
@@ -150,12 +151,41 @@ npm install connect-flash --save;
 npm install --save bcryptjs;
 npm install --save passport;
 npm install --save passport-local;
-*/
-/*
-git clone <url-do-repositorio>
+
+
+
+
+///mongoatlas
+databaseaccess = admin admin
+networkaccess = permitir acesso a qualquer ip o.o.o.o/o
+url de conexão mongodb+srv://admin:<password>@cluster0.o6ozy.mongodb.net/<dbname>?retryWrites=true&w=majority
+criar db.js
+
+//git
+git clone <url-do-repositorio> ou git init (e adicionar manualmente git ignore node_modules)
 git add --all
 git commit -m "model post"
-git push origin main
+git push origin main (como eu dei um clone remoto a main é remota e não está no meu pc)
+
+///////deploy heroku///////
+cmd> npm init -y, enter em tudo (como tem mais de um app aqui por fim didatico e pra economizar diretorio, movi esse arquivo pra pasta raiz e dicionei isso: "start": "cd Node/9_mongoApp && node app.js")
+npm start no package.json, start: "node app.js"
+process.env.PORT || portaDefaultDoPC
+
+baixar heroku cli
+cmd>
+(como eu vou linkar no github o processo muda um pouco, isso é pra git e heroku só)
+cd ..pasta projeto
+heroku login
+heroku create
+copiar a url heroku git remote no site/deploy
+git push heroku master 
+heroku open
+
+//github no heroku:
+criei novo app no site e linkei github, habilitei deploy automatico
+subi a aplicação no github
+
 */
 
 //show databases
@@ -222,4 +252,5 @@ pra depois:
 >fazer um painel onde o admin da ou retira direitos de outro usuarios
 >quando registrar logar tbm
 >so adms podem registrar categorias
+if admin header mostra botão criar postagem ou redirect rota do admin
 */
