@@ -6,16 +6,17 @@ require("../models/Categoria")
 const Categoria = mongoose.model("categorias");
 require("../models/Postagem")
 const Postagem = mongoose.model("postagens");
+const {modo} = require("../helpers/modo");
 
 router.get('/',(req, res)=>{
     res.render('admin/index.handlebars');
 });
 
-router.get('/posts',(req, res)=>{
+router.get('/posts', modo,(req, res)=>{
     res.send('posts');
 });
 
-router.get('/categorias',(req, res)=>{
+router.get('/categorias', modo, (req, res)=>{
     Categoria.find().sort({date : 'desc'}).then((categorias)=>{
         res.render('admin/categorias.handlebars', {categorias: categorias.map(categorias => categorias.toJSON())});
     }).catch((erro)=>{
@@ -24,11 +25,11 @@ router.get('/categorias',(req, res)=>{
     });
 });
 
-router.get('/categorias/add/', (req, res)=>{
+router.get('/categorias/add/', modo, (req, res)=>{
     res.render('admin/addcategorias.handlebars');
 });
 //renomear rota pra /add
-router.post('/categorias/nova',(req, res)=>{
+router.post('/categorias/nova', modo, (req, res)=>{
 
     //validação manual//repor os campos exceto o errado 
     var erros = [];
@@ -60,7 +61,7 @@ router.post('/categorias/nova',(req, res)=>{
 
 });
 
-router.get("/categorias/edit/:id",(req, res)=>{
+router.get("/categorias/edit/:id", modo, (req, res)=>{
     Categoria.findOne({_id: req.params.id}).then((categoria)=>{
         res.render("admin/editcategorias.handlebars", {categoria:categoria.toJSON()});
     }).catch((erro)=>{
@@ -70,7 +71,7 @@ router.get("/categorias/edit/:id",(req, res)=>{
 });
 
 //melhorar pegar o edit pela url nao é melhor? utilizando param
-router.post('/categorias/edit', (req, res) => {
+router.post('/categorias/edit', modo, (req, res) => {
     Categoria.findOne({_id:req.body.id}).then((categoria)=>{
         categoria.nome = req.body.nome;
         categoria.slug = req.body.slug;
@@ -89,7 +90,7 @@ router.post('/categorias/edit', (req, res) => {
     });
 });
 
-router.post('/categorias/delete', (req, res)=>{
+router.post('/categorias/delete', modo, (req, res)=>{
     Categoria.remove({_id: req.body.id}).then(()=>{
         req.flash("success_msg", "Categoria deletada");
         res.redirect('/admin/categorias');
@@ -99,7 +100,7 @@ router.post('/categorias/delete', (req, res)=>{
     });
 });
 
-router.get("/postagens", (req,res)=>{
+router.get("/postagens", modo, (req,res)=>{
     Postagem.find().populate('categoria').sort({data: 'desc'}).then(postagens => {
         res.render("admin/postagens.handlebars", {postagens: postagens.map(postagens => postagens.toJSON())});
     }).catch(erro => {
@@ -108,7 +109,7 @@ router.get("/postagens", (req,res)=>{
     });
 });
 
-router.get("/postagens/add", (req,res)=>{
+router.get("/postagens/add", modo, (req,res)=>{
     Categoria.find().then((categorias)=>{
         res.render("admin/addpostagens.handlebars", {categorias: categorias.map(categorias => categorias.toJSON())});
     }).catch(erro => {
@@ -117,7 +118,7 @@ router.get("/postagens/add", (req,res)=>{
     });
 });
 
-router.post("/postagens/add", (req, res)=>{
+router.post("/postagens/add", modo, (req, res)=>{
 //validação ?
     var erros = [];
 
@@ -144,7 +145,7 @@ router.post("/postagens/add", (req, res)=>{
     }
 });
 
-router.get('/postagens/edit/:id', (req, res) => {
+router.get('/postagens/edit/:id', modo, (req, res) => {
     Postagem.findOne({_id: req.params.id}).populate('categoria').then((postagem)=>{
         Categoria.find().then(categorias => {
             //pendente condição pra dropar elemento do select
@@ -169,7 +170,7 @@ router.get('/postagens/edit/:id', (req, res) => {
 });
 //<form action="/admin/postagens/edit/{{postagem._id}}" method="POST">
 //é seguro? é uma melhor pratica mandar por hidden input e pegar no body do form?
-router.post('/postagens/edit/:id', (req, res)=>{
+router.post('/postagens/edit/:id', modo, (req, res)=>{
     Postagem.findOne({_id:req.params.id}).then((postagem)=>{
         postagem.titulo = req.body.titulo;
         postagem.slug = req.body.slug;
@@ -191,7 +192,7 @@ router.post('/postagens/edit/:id', (req, res)=>{
     });
 });
 //forma não segura pois é um get de botão, nao tem form no html
-router.get('/postagens/delete/:id', (req, res)=>{
+router.get('/postagens/delete/:id', modo, (req, res)=>{
     Postagem.deleteOne({_id: req.params.id}).then(()=>{
         req.flash("success_msg", "Postagem deletada");
         res.redirect('/admin/postagens');

@@ -1,25 +1,27 @@
+{{#if user}}
+{{else}}
 <div class="card">
-  <h5 class="card-header">Bem vindo ao hello-node</h5>
-  <div class="card-body">
-    <h5 class="card-title">Blog de postagens em node</h5>
-    <p class="card-text">Se inscreva para postar sobre algo</p>
-    <a href="#" class="btn btn-primary">Inscreva-se</a>
-  </div>
+    <h5 class="card-header">Bem vindo ao hello-node</h5>
+    <div class="card-body">
+        <h5 class="card-title">Blog de postagens em node</h5>
+        <p class="card-text">Se inscreva para postar sobre algo</p>
+        <a href="/usuario/login" class="btn btn-primary">Inscreva-se</a>
+    </div>
 </div>
-
 <hr>
+{{/if}}
 <h2>Posts recentes: </h2>
 {{#each postagens}}
-    <div class="card mt-4">
-        <div class="card-body">
-            <h3>{{titulo}}</h3>
-            <p>{{descricao}}</p>
-            <a href="/postagens/{{slug}}"><button class="btn btn-success">Ler mais</button></a><br>
-            <hr>
-            <small>Categoria: {{categoria.nome}}</small><br>
-            <small>Data da publicação: {{data}}</small>
-        </div>
+<div class="card mt-4">
+    <div class="card-body">
+        <h3>{{titulo}}</h3>
+        <p>{{descricao}}</p>
+        <a href="/postagens/{{slug}}"><button class="btn btn-success">Ler mais</button></a><br>
+        <hr>
+        <small>Categoria: {{categoria.nome}}</small><br>
+        <small>Data da publicação: {{data}}</small>
     </div>
+</div>
 {{else}}
 <div class="card mt-4">
     <div class="card-body">

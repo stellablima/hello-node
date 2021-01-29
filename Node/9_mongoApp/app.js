@@ -14,7 +14,7 @@ const Postagem = mongoose.model('postagens');
 require("./models/Categoria");
 const Categoria = mongoose.model('categorias');
 const passport = require("passport");
-require('./config/auth')(passport)
+require('./config/auth')(passport);
 
 //configurar módulos
 app.use(session({
@@ -29,6 +29,8 @@ app.use((req, res, next)=>{ //middleware para configurar variaveis globais
     res.locals.success_msg = req.flash("success_msg");
     res.locals.error_msg = req.flash("error_msg");
     res.locals.error = req.flash("error");
+    res.locals.user = req.user || null; //user armazena dados so usuario autenticado, req.user criado pelo passport armazena dados do usuario logado
+    //res.locals.user ? (res.locals.user).toJSON : null
     next();
 });
 app.use(bodyParser.urlencoded({extended: true}));
@@ -214,4 +216,10 @@ hash, codifica mensagem, nao da pra descobrir
 
 passport middleare de autenticação
 
+
+
+pra depois:
+>fazer um painel onde o admin da ou retira direitos de outro usuarios
+>quando registrar logar tbm
+>so adms podem registrar categorias
 */
