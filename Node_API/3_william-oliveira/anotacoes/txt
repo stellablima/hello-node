@@ -1,0 +1,44 @@
+anotações:
+
+https://woliveiras.com.br/posts/construindo-uma-api-com-node-js-parte-1-criando-e-listando-dados/
+
+npm init -y
+npm install --save express debug
+npm install --save-dev nodemon
+
+jackage.json> script > "dev": "node node_modules/nodemon/bin/nodemon bin/server"
+
+>touch .gitignore
+node_modules
+.env
+//anexos Construindo uma API com Node.js - Parte 1_ criando e listando dados - William Oliveira//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
