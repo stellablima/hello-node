@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cd Node_API/1_william-oliveira && node bin/server",
-    "dev": "node node_modules/nodemon/bin/nodemon bin/server"
+    "dev": "node node_modules/nodemon/bin/nodemon bin/server",
+    "start": "cd Node_API/1_william-oliveira && node bin/server"
   },
   "keywords": [],
   "author": "",
