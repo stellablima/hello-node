@@ -11,7 +11,7 @@ app.use(express.urlencoded({extended: true}));
 const mongoose = require('mongoose');
 mongoose.connect(process.env.DATABASE_CONNECTION_STRING, {
     useUnifiedTopology: true,
-    useFindAndModify: true,
+    useFindAndModify: false,
     useNewUrlParser: true,
     useCreateIndex: true
 });

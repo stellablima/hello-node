@@ -11,3 +11,13 @@ exports.createLine = async data => {
   const line = new Line(data);
   await line.save();
 };
+
+exports.updateLine = async (id, data) => {
+  await Line.findByIdAndUpdate(id, {
+    $set: data
+  });
+};
+
+exports.deleteLine = async id => {
+  await Line.findByIdAndDelete(id);
+};

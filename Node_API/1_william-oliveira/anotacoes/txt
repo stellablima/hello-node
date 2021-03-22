@@ -17,7 +17,7 @@ node_modules
 //anexos Construindo uma API com Node.js - Parte 1_ criando e listando dados - William Oliveira//
 
 https://woliveiras.com.br/posts/construindo-uma-api-com-node-js-parte-2-melhorando-nossa-cria%C3%A7%C3%A3o-e-listagem-de-dados/
-
+POST
 {
 	"champion": "6058b17d8037c946089d32a4",
 	"line": "Bem vindos ao League of DRAVEN"
@@ -26,14 +26,22 @@ https://woliveiras.com.br/posts/construindo-uma-api-com-node-js-parte-2-melhoran
 	"name": "Lulu",
 	"route": "sup"
 }
-
+GET
 
 npm install --save express-validator
+http://localhost:3000/lines/6058b9595c67ef3c6419d4de
+PUT
+{
+	"line": "Vamos iluminar isso aqui!"
+}
 
+DELETE
+https://woliveiras.com.br/posts/construindo-uma-api-com-nodejs-parte-4-subindo-uma-api-nodejs-no-google-cloud/
 
+gcloud auth login
+gcloud config set project PROJECT_ID
 
-
-
+/cancela é pago kk
 
 
 

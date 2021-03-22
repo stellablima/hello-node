@@ -11,6 +11,16 @@ exports.createChampion = async data => {
   await champion.save();
 };
 
+exports.updateChampion = async (id, data) => {
+  await Champion.findByIdAndUpdate(id, {
+    $set: data
+  });
+};
+
+exports.deleteChampion = async id => {
+  await Champion.findByIdAndDelete(id);
+};
+
 /*const mongoose = require('mongoose');
 require('../models/Champion');
 const Champion = mongoose.model('champions');*/
