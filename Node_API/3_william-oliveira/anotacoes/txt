@@ -1,3 +1,6 @@
+npm install
+npm run dev
+
 anotações:
 
 https://woliveiras.com.br/posts/construindo-uma-api-com-node-js-parte-1-criando-e-listando-dados/
@@ -13,15 +16,19 @@ node_modules
 .env
 //anexos Construindo uma API com Node.js - Parte 1_ criando e listando dados - William Oliveira//
 
+https://woliveiras.com.br/posts/construindo-uma-api-com-node-js-parte-2-melhorando-nossa-cria%C3%A7%C3%A3o-e-listagem-de-dados/
+
+{
+	"champion": "6058b17d8037c946089d32a4",
+	"line": "Bem vindos ao League of DRAVEN"
+}
+{
+	"name": "Lulu",
+	"route": "sup"
+}
 
 
-
-
-
-
-
-
-
+npm install --save express-validator
 
 
 

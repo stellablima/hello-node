@@ -1,11 +1,10 @@
-const mongoose = require('mongoose');
-require('../models/Line');
-const Line = mongoose.model('lines');
+const { validationResult } = require('express-validator');
+const repository = require('../repositories/lines-repository');
 
 // list
 exports.listLines = async (req, res) => {
     try {
-      const data = await Line.find({});
+      const data = await repository.listLines();
       res.status(200).send(data);
     } catch (e) {
       res.status(500).send({message: 'Falha ao carregar as falas.'});
@@ -14,16 +13,15 @@ exports.listLines = async (req, res) => {
   
   // create
   exports.createLine = async (req, res) => {
+    const {errors} = validationResult(req);
+    if(errors.length > 0) {
+      return res.status(400).send({message: errors})
+    }//validação se ja existe no banco?
     try {
-      const line = new Line({
+      await repository.createLine({
         champion: req.body.champion,
         line: req.body.line
-      });
-  
-      console.log(line)
-  
-      await line.save();
-  
+      }); 
       res.status(201).send({message: 'Fala cadastrada com sucesso!'});
     } catch (e) {
       res.status(500).send({message: 'Falha ao cadastrar fala.'});

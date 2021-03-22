@@ -3,7 +3,7 @@ require('dotenv').config();
 
 // App
 const app = express();
-app.use(express.json());
+app.use(express.json());//dados que estão entrando em nossa API via POST sejam realmente um json ou um tipo de dado que esperamos via body do HTTP
 app.use(express.urlencoded({extended: true}));
 //https://stackoverflow.com/questions/23259168/what-are-express-json-and-express-urlencoded
 
@@ -38,7 +38,7 @@ process.on('SIGINT', () => { //usuario matou processo
     });
 });
 
-// Load models
+// Load models - carreguei os models o spp.js pra que mesmo??
 //const Champions = require('./models/champions');
 require('./models/Champion');
 const Champion = mongoose.model('champions');

@@ -1,11 +1,10 @@
-const mongoose = require('mongoose');
-require('../models/Champion');
-const Champion = mongoose.model('champions');
+const { validationResult } = require('express-validator');
+const repository = require('../repositories/champions-repository');
 
 // list
 exports.listChampions = async (req, res) => {
     try {
-      const data = await Champion.find({});
+      const data = await repository.listChampions();
       res.status(200).send(data);
     } catch (e) {
       res.status(500).send({message: 'Falha ao carregar as campeões.'});
@@ -14,16 +13,16 @@ exports.listChampions = async (req, res) => {
   
   // create
   exports.createChampion = async (req, res) => {
+    const {errors} = validationResult(req);
+    if(errors.length > 0) {
+      return res.status(400).send({message: errors})
+    }
+    
     try {
-      const champion = new Champion({
+     await repository.createChampion({
         name: req.body.name,
         route: req.body.route
       });
-  
-      console.log(champion)
-  
-      await champion.save();
-  
       res.status(201).send({message: 'Campeão cadastrado com sucesso!'});
     } catch (e) {
       res.status(500).send({message: 'Falha ao cadastrar campeão.'});
