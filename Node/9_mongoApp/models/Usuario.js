@@ -13,7 +13,7 @@ const Usuario = new Schema({
     },
     modo:{
         type: Number,
-        default: 1
+        default: 0
     },
     senha: {
         type: String,
