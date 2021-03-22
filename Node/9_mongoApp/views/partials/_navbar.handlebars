@@ -16,6 +16,7 @@
           <a class="nav-link active" href="/categorias">{{user.nome}}Categorias</a>
         </li>
       </ul>
+      {{#if user}}
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/admin/postagens">Gerenciar Postagens</a>
@@ -24,6 +25,7 @@
           <a class="nav-link active" href="/admin/categorias">{{user.nome}}Gerenciar Categorias</a>
         </li>
       </ul>
+      {{/if}}
       <ul class="nav justify-content-end">
         {{#if user}}
         <li class="nav-item">
