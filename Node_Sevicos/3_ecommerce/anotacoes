@@ -34,3 +34,11 @@ app.listen(PORT, () => {
 })
 
 node index.js
+
+vim user.js
+
+{
+    "name":"Stella",
+    "email":"stella@email.com",
+    "password":"123"
+}
