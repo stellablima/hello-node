@@ -1,0 +1,36 @@
+mkdir auth-service
+mkdir product-service
+mkdir order-service
+cd auth-service
+npm init -y
+npm i -s express jsonwebtoken amqplib mongoose nodemon
+
+cd ../product-service
+npm i -s express jsonwebtoken amqplib mongoose nodemon
+
+cd ../order-service
+npm i -s express jsonwebtoken amqplib mongoose nodemon
+
+cd ../auth-service
+
+vim index.js
+
+const express =  require("express")
+const app = express()
+const PORT = process.env.PORT_ONE || 7070
+const mongoose =  require('mongoose')
+
+mongoose.connect("mongodb://localhost/auth-service", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}, () =>{
+    console.log(`Auth-Service DB Connected`)
+})
+
+app.use(express.json())
+
+app.listen(PORT, () => {
+    console.log(`Auth-Service at ${PORT}`)
+})
+
+node index.js

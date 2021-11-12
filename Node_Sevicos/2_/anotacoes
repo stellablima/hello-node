@@ -1,0 +1,3 @@
+npm init -y
+//npm install --save node-cron
+npm install --save cron

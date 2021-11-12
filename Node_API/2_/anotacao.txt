@@ -1,0 +1,13 @@
+consumir a api que foi feita com um front end, aprender angular tbm
+
+utilizar 1_willian + Node/9_MongoApp com variáveis de ambiente e esteiras dev/prod
+
+modificar para criar meu próprio app e consumir a api em vez de acessar o banco na mesma aplicação
+
+pesquisar em como aplicações podem consumir apis internamente através de rotas com acesso ao banco 
+ou cache da aplicação, o que uma api dentro da aplicação pode fazer, entender quando usar o que, 
+como organizar os diretórios, e como consumir apis externas em outros servidores
+
+por ultimo dockerizar e ver como desacoplar o maximo possível e em caso real, estudar se a api
+do banco estaria ou não dentro da mesma aplicação, servidor ou em outra rede, e em como
+fazer um acesso seguro e normalizado
