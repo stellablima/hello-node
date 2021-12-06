@@ -8,6 +8,7 @@ npm i -s express jsonwebtoken amqplib mongoose nodemon
 cd ../product-service
 npm i -s express jsonwebtoken amqplib mongoose nodemon
 
+
 cd ../order-service
 npm i -s express jsonwebtoken amqplib mongoose nodemon
 
@@ -42,3 +43,45 @@ vim user.js
     "email":"stella@email.com",
     "password":"123"
 }
+{
+    "name":"Jin",
+    "email":"jin@email.com",
+    "password":"jin"
+}
+
+docker run -p 5672:5672 rabbitmq
+
+
+http://localhost:7070/auth/login
+{
+    "email":"stella@email.com",
+    "password":"123"
+}
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Mzg3NDQwNzZ9.w9p3XvIsEK2yWGcodBt-OWZbGCYj5dw_WvSbrKodwKI"
+}
+
+http://localhost:8080/product/create
+
+{
+    "name":"Nescau",
+    "description":"achocolatado de cacau",
+    "price": 12
+}
+61ad40277b30764fae39b210
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Mzg3NDQwNzZ9.w9p3XvIsEK2yWGcodBt-OWZbGCYj5dw_WvSbrKodwKI
+
+
+http://localhost:8080/product/buy
+{
+    "created_at": "2021-12-05T22:21:57.052Z",
+    "_id": "61ad3ca7ad2ca2e0a82366ca"
+}
+
+auth-service:
+
+mongo 
+user order-service
+db.getCollectionsNames()
+db.orders.find({})
